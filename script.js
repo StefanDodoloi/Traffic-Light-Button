@@ -1,20 +1,12 @@
+const button = document.getElementById("trafficLightButton");
+const colors = ["btn-danger", "btn-warning", "btn-success"];
+let index = 0;
+
 function changeColor() {
-    let button = document.getElementById("trafficLightButton");
-
-    let currentClass = button.classList.item(1);
-
-    if (currentClass === "btn-danger") {
-        button.classList.remove("btn-danger");
-        button.classList.add("btn-warning");
-    } else if (currentClass === "btn-warning") {
-        button.classList.remove("btn-warning");
-        button.classList.add("btn-success");
-    } else {
-        button.classList.remove("btn-success");
-        button.classList.add("btn-danger");
-    }
+    button.classList.remove(colors[index]);
+    index = (index + 1) % colors.length;
+    button.classList.add(colors[index]);
 }
 
-document.getElementById("trafficLightButton").addEventListener("click", changeColor);
-
+button.addEventListener("click", changeColor);
 setInterval(changeColor, 10000);
